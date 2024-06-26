@@ -94,25 +94,17 @@
         <span>
           <s class="price-item price-item--regular">
             {% if settings.currency_code_enabled %}
-                {% comment %}
-                original code below
                 {{ compare_at_price | money_with_currency }}
-                {% endcomment %}
-                {{ product.price | times: 0.3  | money }}
-
             {% else %}
-                {% comment %}
-              original code below
               {{ compare_at_price | money }}
-              {% endcomment %}
-                {{ product.price | times: 0.2  | money }}
             {% endif %}
           </s>
         </span>
       {%- endunless -%}
       <span class="visually-hidden visually-hidden--inline">{{ 'products.product.price.sale_price' | t }}</span>
       <span class="price-item price-item--sale price-item--last">
-        {{ money_price }}
+        {% comment %}{{ money_price }}{% endcomment %}
+          {{ product.price | times: 0.3  | money }}
       </span>
     </div>
     <small class="unit-price caption{% if product.selected_or_first_available_variant.unit_price_measurement == nil %} hidden{% endif %}">
