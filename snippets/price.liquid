@@ -8,6 +8,11 @@
   - price_class: {String} Adds a price class to the price element (optional)
   - show_compare_at_price: {Boolean} Renders the compare at price if the product matches the condition (optional)
 
+
+  {{ product.price | times: 0.6  | money }}
+  Usado para simular el compare-price del producto, el times permite calcular el porciento revisar usando calculadora
+  de esta manera se debe poder implementar el discount como variente y ver despues de una transaccion
+
   Usage:
   {% render 'price', product: product %}
 {% endcomment %}
@@ -89,9 +94,18 @@
         <span>
           <s class="price-item price-item--regular">
             {% if settings.currency_code_enabled %}
-              {{ compare_at_price | money_with_currency }}
+                {% comment %}
+                original code below
+                {{ compare_at_price | money_with_currency }}
+                {% endcomment %}
+                {{ product.price | money }}
+
             {% else %}
+                {% comment %}
+              original code below
               {{ compare_at_price | money }}
+              {% endcomment %}
+                {{ product.price | times: 0.3  | money }}
             {% endif %}
           </s>
         </span>
