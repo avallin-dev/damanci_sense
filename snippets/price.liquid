@@ -98,14 +98,14 @@
                 original code below
                 {{ compare_at_price | money_with_currency }}
                 {% endcomment %}
-                {{ product.price | money }}
+                {{ product.price | times: 0.3  | money }}
 
             {% else %}
                 {% comment %}
               original code below
               {{ compare_at_price | money }}
               {% endcomment %}
-                {{ product.price | times: 0.3  | money }}
+                {{ product.price | times: 0.2  | money }}
             {% endif %}
           </s>
         </span>
