@@ -128,11 +128,11 @@
             {% if product.tags.size > 0 %}
                 {% for tag in product.tags %}
                     {% assign tag_value = tag %}
-                    {% if tag_value contains 'test' %}
+                    {% if tag_value contains '35%off' %}
                         <span class="visually-hidden visually-hidden--inline">{{ 'products.product.price.regular_price' | t }}</span>
                         <span>
           <s class="price-item price-item--regular">
-            {{ product.price | times: 0.3 | money }}
+            {{ product.price | times: 0.35 | money }}
           </s>
         </span>
                     {% endif %}
