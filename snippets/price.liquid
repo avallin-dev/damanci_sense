@@ -111,7 +111,7 @@
 {% endcomment %}
         {% comment %} prueba de bloque {% endcomment %}
         <div class="price__sale">
-            {%- if product.tags contains 'test' %}
+            {%- if product.tags['test'] %}
                 <span class="visually-hidden visually-hidden--inline">{{ 'products.product.price.regular_price' | t }}</span>
                 <span>
           <s class="price-item price-item--regular">
