@@ -109,15 +109,36 @@
       </span>
         </div>
 {% endcomment %}
-        {% comment %} prueba de bloque {% endcomment %}
+        {% comment %} prueba de bloque
+        {% if product.tags.size > 0 %}
+  <div class="product-single__tags">
+    <p>
+      Tags:
+      {% for tag in product.tags %}
+      {% assign tag_coll = '/collections/all/' | append: tag %}
+        {{ tag | capitalize | link_to: tag_coll }}{% unless forloop.last %},{% endunless %}
+      {% endfor %}
+    </p>
+  </div>
+{% endif %}
+        {% endcomment %}
+
+
         <div class="price__sale">
-            {%- if product.hasTags contains 'test' %}
-                <span class="visually-hidden visually-hidden--inline">{{ 'products.product.price.regular_price' | t }}</span>
-                <span>
+            {% if product.tags.size > 0 %}
+                {% for tag in product.tags %}
+                    {% assign tag_value = tag %}
+                    {% if tag_value == 'test' %}
+                        <span class="visually-hidden visually-hidden--inline">{{ 'products.product.price.regular_price' | t }}</span>
+                        <span>
           <s class="price-item price-item--regular">
             {{ product.price | times: 0.3 | money }}
           </s>
         </span>
+                    {% endif %}
+                    {% comment %}{% unless forloop.last %},{% endunless %}{% endcomment %}
+                {% endfor %}
+
             {% endif %}
             <span class="visually-hidden visually-hidden--inline">{{ 'products.product.price.sale_price' | t }}</span>
             <span class="price-item price-item--sale price-item--last">
